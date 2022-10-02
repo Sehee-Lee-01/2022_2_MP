@@ -1,48 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:columnCount="5"
+    android:orientation="horizontal"
     android:padding="30dp"
+    android:rowCount="10"
     tools:context=".GoodsActivity">
+
+    <ListView
+        android:id="@+id/listGoods"
+        android:layout_height="300dp"
+        android:layout_row="0"
+        android:layout_rowSpan="4"
+        android:layout_column="0"
+        android:layout_columnSpan="4" />
+
+    <Button
+        android:id="@+id/deleteItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:text="상품 삭제" />
+
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:text="상품명" />
+
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_height="wrap_content"
+        android:layout_row="6"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:hint="상품명을 입력하세요."
+        android:inputType="text" />
+
+
+    <Button
+        android:id="@+id/addImage"
+        android:layout_height="wrap_content"
+        android:layout_row="7"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="3"
+        android:layout_gravity="center"
+        android:text="이미지 불러오기" />
+
+    <ImageView
+        android:id="@+id/goodsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_row="5"
+        android:layout_rowSpan="3"
+        android:layout_column="3"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center"
+        tools:srcCompat="@drawable/cat" />
+
+    <Button
+        android:id="@+id/addItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="8"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:text="상품 추가" />
 
     <Button
         android:id="@+id/btnReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원정보" />
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:src="@drawable/pie" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/dog" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:src="@drawable/cat" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:src="@drawable/rabbit" />
-    </LinearLayout>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_row="9"
+        android:layout_rowSpan="1"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:text="회원정보" />
+</GridLayout>
