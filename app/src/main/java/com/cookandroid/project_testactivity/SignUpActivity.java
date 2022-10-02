@@ -1,5 +1,6 @@
 package com.cookandroid.project_testactivity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -21,12 +22,13 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
             }
         });
 
         txtSignUp = (TextView) findViewById(R.id.txtSignUp);
-        txtSignUp.setTextSize(30);
+        txtSignUp.setTextSize(20);
         txtSignUp.setTypeface(Typeface.DEFAULT_BOLD);
 
         txtID = (TextView) findViewById(R.id.txtID);
@@ -35,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
         txtPhone = (TextView) findViewById(R.id.txtPhone);
         txtAddress = (TextView) findViewById(R.id.txtAddress);
         txtInfo = (TextView) findViewById(R.id.txtInfo);
-
 
 
     }

@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".MainActivity">
+    tools:context=".LogInActivity">
+
+    <TextView
+        android:id="@+id/txtLogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="로그인" />
 
     <TextView
         android:id="@+id/txtID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLogIn"
         android:layout_margin="5dp"
         android:text="ID" />
 
     <EditText
         android:id="@+id/editID"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtID"
         android:layout_margin="5dp"
         android:hint="ID를 입력하세요." />
 
@@ -26,13 +37,15 @@
         android:id="@+id/txtPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editID"
         android:layout_margin="5dp"
         android:text="비밀번호" />
 
     <EditText
         android:id="@+id/editPW"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPW"
         android:layout_margin="5dp"
         android:hint="비밀번호를 입력하세요." />
 
@@ -40,17 +53,21 @@
         android:id="@+id/btnLogIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnSignUp"
         android:text="로그인" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnGoods"
         android:text="회원가입" />
+
     <Button
-        android:id="@+id/btnList"
+        android:id="@+id/btnGoods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:text="상품 확인하기" />
 
-</LinearLayout>
+</RelativeLayout>
