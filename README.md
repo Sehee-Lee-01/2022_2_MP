@@ -1,2 +1,0 @@
-# 2022_2_Mobile_Programming
-2022_2_Mobile_Programming
