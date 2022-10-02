@@ -3,15 +3,19 @@ package com.cookandroid.project_testactivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
     Button btnSignUp;
-    TextView txtSignUp, txtID, txtPW, txtName, txtPhone, txtAddress, txtInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +30,6 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        txtSignUp = (TextView) findViewById(R.id.txtSignUp);
-        txtSignUp.setTextSize(20);
-        txtSignUp.setTypeface(Typeface.DEFAULT_BOLD);
-
-        txtID = (TextView) findViewById(R.id.txtID);
-        txtPW = (TextView) findViewById(R.id.txtPW);
-        txtName = (TextView) findViewById(R.id.txtName);
-        txtPhone = (TextView) findViewById(R.id.txtPhone);
-        txtAddress = (TextView) findViewById(R.id.txtAddress);
-        txtInfo = (TextView) findViewById(R.id.txtInfo);
-
 
     }
 

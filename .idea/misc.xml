@@ -6,10 +6,12 @@
         <entry key="..\:/src/flutterwork/Project_TestActivity/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/src/flutterwork/Project_TestActivity/app/src/main/res/layout/second.xml" value="0.1" />
         <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/goods.xml" value="0.1" />
+        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/goods.xml" value="0.25" />
+        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/goods_row.xml" value="0.14457831325301204" />
         <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/login.xml" value="0.3" />
         <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/second.xml" value="0.22" />
-        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/signup.xml" value="0.35520833333333335" />
+        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/signup.xml" value="0.29157759726378796" />
+        <entry key="..\:/src/javawork/Project_TestActivity/app/src/main/res/layout/signup_row.xml" value="0.1" />
       </map>
     </option>
   </component>
