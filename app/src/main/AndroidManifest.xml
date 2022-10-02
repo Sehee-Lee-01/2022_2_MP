@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" android:label="SignUp 액티비티"/>
-        <activity android:name=".GoodsActivity" android:label="Goods 액티비티"/>
+        <activity android:name=".SignUpActivity" android:label="회원가입"/>
+        <activity android:name=".GoodsActivity" android:label="상품 목록"/>
     </application>
 
 </manifest>
