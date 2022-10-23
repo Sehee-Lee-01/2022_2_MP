@@ -25,13 +25,15 @@ public class GoodsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods);
         btnReturn = (Button) findViewById(R.id.btnReturn);
-//        btnReturn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                // 회원가입 프래그먼트로 이동
+                intent.putExtra("index", 1);
+                startActivity(intent);
+            }
+        });
         listGoods = (ListView) findViewById(R.id.listGoods);
         ListAdapter adapter = new ListAdapter();
         listGoods.setAdapter((adapter));

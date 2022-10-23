@@ -17,27 +17,28 @@ import com.cookandroid.project_testactivity.R;
 public class LogInFragment extends Fragment {
     // 로그인 했으면 이름 "00님 안녕하세요." 하고 상품확인 버튼만 보이게
     Button btnToLogIn, btnToGoods, btnToSignUp;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_login, container, false);
         btnToLogIn = (Button) rootView.findViewById(R.id.btnLogIn);
 
-//        btnToLogIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MainActivity activity = (MainActivity) getActivity();
-//                activity.onFragmentChanged(0);
-//            }
-//        });
+        btnToLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GoodsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnToGoods = (Button) rootView.findViewById(R.id.btnGoods);
-//        btnToGoods.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), GoodsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnToGoods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GoodsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnToSignUp = (Button) rootView.findViewById(R.id.btnSignUp);
         btnToSignUp.setOnClickListener(new View.OnClickListener() {
