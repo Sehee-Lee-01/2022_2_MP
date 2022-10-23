@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Project_TestActivity"
         tools:targetApi="31">
         <activity
-            android:name=".LogInActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" android:label="회원가입"/>
         <activity android:name=".GoodsActivity" android:label="상품 목록"/>
     </application>
 
