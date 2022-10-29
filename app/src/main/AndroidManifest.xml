@@ -25,5 +25,5 @@
         <activity android:name=".SignUpPop" android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".InfoPop" android:theme="@style/Theme.AppCompat.Dialog" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

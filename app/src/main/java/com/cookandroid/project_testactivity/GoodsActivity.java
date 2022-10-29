@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,10 +23,49 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GoodsActivity extends AppCompatActivity {
-    Button btnPop;
+    Button addItem, deleteItem, btnPop;
+    ImageButton goodsImage;
     ListView listGoods;
-    String[] data = {"dog", "cat", "pie", "rabbit", "5", "6", "7"};
+    EditText editName;
+    String[] names = {"cat", "dolphin", "hen", "lion", "rabbit", "panda", "sheep"};
+    int[] imgs = {R.drawable.cat, R.drawable.dolphin, R.drawable.hen, R.drawable.lion, R.drawable.rabbit, R.drawable.panda, R.drawable.sheep};
+    ActivityResultLauncher<Intent> imageResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == InfoPop.RESULT_OK) {
+                        //이미지 버튼 소스 변경
+                    }
+                }
+            });
+
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == InfoPop.RESULT_OK) {
+                        Intent inIntent = result.getData();
+                        boolean resultSignUp = inIntent.getBooleanExtra("allowSignUp", false);
+                        if (resultSignUp) {
+                            Intent outIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            // 회원가입 프래그먼트로 이동
+                            outIntent.putExtra("index", 1);
+                            startActivity(outIntent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "회원가입을 취소합니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +75,45 @@ public class GoodsActivity extends AppCompatActivity {
         Intent inIntent = getIntent();
         boolean isLogin = inIntent.getBooleanExtra("isLogin", false);
 
+        goodsImage = (ImageButton) findViewById(R.id.goodsImage);
+        goodsImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent imgIntent = new Intent();
+                imgIntent.setType(Intent.ACTION_GET_CONTENT);
+//                imageResultLauncher.launch(imgIntent);
+                Toast.makeText(getApplicationContext(), "이미지가 업로드되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        deleteItem = (Button) findViewById(R.id.deleteItem);
+        deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "상품이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addItem = (Button) findViewById(R.id.addItem);
+        editName = (EditText) findViewById(R.id.editName);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String addGoodsName = editName.getText().toString();
+                if (addGoodsName.equals("")) {
+                    Toast.makeText(getApplicationContext(), "추가 상품을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    List<String> itemList = new ArrayList<>(Arrays.asList(names));
+                    itemList.add(addGoodsName);
+                    names = new String[itemList.size()];
+                    itemList.toArray(names);
+                    Toast.makeText(getApplicationContext(), "상품이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         btnPop = (Button) findViewById(R.id.btnPop);
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == InfoPop.RESULT_OK) {
-                            Intent inIntent = result.getData();
-                            boolean resultSignUp = inIntent.getBooleanExtra("allowSignUp", false);
-                            if (resultSignUp) {
-                                Intent outIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                // 회원가입 프래그먼트로 이동
-                                outIntent.putExtra("index", 1);
-                                startActivity(outIntent);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "회원가입을 취소합니다.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                });
+
         btnPop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +139,7 @@ public class GoodsActivity extends AppCompatActivity {
     class ListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return data.length;
+            return names.length;
         }
 
         @Override
@@ -101,8 +161,8 @@ public class GoodsActivity extends AppCompatActivity {
             TextView sub_name = (TextView) view.findViewById(R.id.goodsName);
             ImageView sub_image = (ImageView) view.findViewById(R.id.goodsImage);
             CheckBox sub_check = (CheckBox) view.findViewById(R.id.goodsCheck);
-            sub_name.setText(data[i]);
-            sub_image.setImageResource(R.drawable.rabbit);
+            sub_name.setText(names[i]);
+            sub_image.setImageResource(imgs[i]);
             return view;
         }
     }
