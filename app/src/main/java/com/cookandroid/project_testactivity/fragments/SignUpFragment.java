@@ -47,7 +47,7 @@ public class SignUpFragment extends Fragment {
                 // 비밀번호 유효성 검사(자릿수, 특수키), 화면 전환 안하고 중복 될 때 빨간 글씨 visible
                 //"※ 유효하지 않은 비밀번호입니다.(8~20자리, 영문 및 숫자)", "※ 비밀번호를 입력해주세요.(8~20자리, 영문 및 숫자)"
 
-                // 회원 정보 정보 저장 및 로그인 여부 저장(회원가입시에는 false)
+                // 회원 정보 정보 저장
                 SharedPreferences prefs  = getActivity().getSharedPreferences("person_info", 0);
                 SharedPreferences.Editor editor = prefs.edit();
 
@@ -61,7 +61,6 @@ public class SignUpFragment extends Fragment {
                 editor.putString("userName", userName);
                 editor.putString("userPhone", userPhone);
                 editor.putString("userAddress", userAddress);
-                editor.putBoolean("isLogin", false);
                 editor.apply();
 
                 MainActivity activity = (MainActivity) getActivity();

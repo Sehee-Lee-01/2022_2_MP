@@ -90,7 +90,7 @@
                 android:visibility="gone"/>
 
             <Button
-                android:id="@+id/btnReturn"
+                android:id="@+id/btnPop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_row="9"

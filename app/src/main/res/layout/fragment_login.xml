@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="로그인" />
+        android:text="로그인"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ID" />
+                android:text="ID"
+                android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/editID"
@@ -50,8 +51,8 @@
             android:id="@+id/inputPW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_below="@+id/inputID"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -59,7 +60,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="비밀번호" />
+                android:text="비밀번호"
+                android:textColor="#000000" />
 
             <EditText
                 android:id="@+id/editPW"
@@ -69,12 +71,15 @@
                 android:hint="비밀번호를 입력하세요."
                 android:inputType="textPassword" />
         </LinearLayout>
+
         <TextView
-            android:id="@+id/announcePW"
+            android:id="@+id/announce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/inputPW"
             android:layout_gravity="right"
-            android:text="※ 회원정보가 없거나 비밀번호가 틀렸습니다."
+            android:text="※ ID가 잘못되었거나 비밀번호가 잘못되었습니다."
+            android:textColor="#ff0000"
             android:visibility="gone" />
     </RelativeLayout>
 

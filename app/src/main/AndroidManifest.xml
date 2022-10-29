@@ -18,11 +18,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".GoodsActivity" android:label="상품 목록"/>
+        <activity android:name=".SignUpPop" android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".InfoPop" android:theme="@style/Theme.AppCompat.Dialog" />
     </application>
 
 </manifest>
