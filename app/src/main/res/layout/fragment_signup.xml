@@ -63,17 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="아이디 중복 검사"
+                    android:text="ID 중복 검사"
                     android:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/testID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="※ 아이디 중복 검사를 해주세요."
-                    android:textColor="#ff0000"
-                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/invalidID"
@@ -120,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="※ 8자리 이상, 영문 및 숫자만 허용"
+                    android:text="※ 8~12자리, 영문 대소문자, 숫자, 특수 문자 포함"
                     android:visibility="visible"/>
 
                 <LinearLayout
@@ -203,11 +194,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
-                    android:textColor="#000000"
-                    android:text="개인정보 활용에 동의하시겠습니까?" />
+                    android:text="개인정보 활용에 동의하시겠습니까?"
+                    android:textColor="#000000" />
 
                 <RadioGroup
-                    android:id="@+id/rGroup1"
+                    android:id="@+id/rGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">

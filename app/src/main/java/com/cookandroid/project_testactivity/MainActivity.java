@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (indexValue == 1) {
             fragmentTransaction.add(R.id.fragmentMain, signUpFragment);
         }
-
         fragmentTransaction.commit();
     }
 
