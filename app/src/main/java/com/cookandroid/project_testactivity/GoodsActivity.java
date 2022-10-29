@@ -131,6 +131,7 @@ public class GoodsActivity extends AppCompatActivity {
                 }
             }
         });
+
         listGoods = (ListView) findViewById(R.id.listGoods);
         ListAdapter adapter = new ListAdapter();
         listGoods.setAdapter((adapter));
