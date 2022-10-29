@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.cookandroid.project_testactivity.fragments.LogInFragment;
 import com.cookandroid.project_testactivity.fragments.SignUpFragment;
 
 public class MainActivity extends AppCompatActivity {
+    private FragmentManager manager = getSupportFragmentManager();
     private LogInFragment logInFragment;
     private SignUpFragment signUpFragment;
 
@@ -26,27 +29,26 @@ public class MainActivity extends AppCompatActivity {
         logInFragment = new LogInFragment();
         signUpFragment = new SignUpFragment();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
         if (indexValue == 0) {
             fragmentTransaction.add(R.id.fragmentMain, logInFragment);
+
         } else if (indexValue == 1) {
             fragmentTransaction.add(R.id.fragmentMain, signUpFragment);
         }
+
         fragmentTransaction.commit();
     }
 
     public void onFragmentChanged(int index) {
         if (index == 0) {
-            FragmentManager fm1 = getSupportFragmentManager();
-            FragmentTransaction ft1 = fm1.beginTransaction();
-            ft1.replace(R.id.fragmentMain, logInFragment);
-            ft1.commit();
+            if (logInFragment == null)
+                logInFragment = new LogInFragment();
+            manager.beginTransaction().replace(R.id.fragmentMain, logInFragment).commit();
         } else if (index == 1) {
-            FragmentManager fm2 = getSupportFragmentManager();
-            FragmentTransaction ft2 = fm2.beginTransaction();
-            ft2.replace(R.id.fragmentMain, signUpFragment);
-            ft2.commit();
+            if (signUpFragment == null)
+                signUpFragment = new SignUpFragment();
+            manager.beginTransaction().replace(R.id.fragmentMain, signUpFragment).commit();
         }
     }
 }
