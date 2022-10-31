@@ -131,17 +131,17 @@ public class SignUpFragment extends Fragment {
     private void insertUserInfo(ArrayList<String> values) {
         prefs = getActivity().getSharedPreferences("person_info", 0);
         SharedPreferences.Editor editor = prefs.edit();
-        String[] infoList = new String[]{"userID", "userPW", "userName", "userPhone", "userAddress"};
+        String[] infoList = new String[]{"userIDListSt", "userPWListSt", "userNameListSt", "userPhoneListSt", "userAddressListSt"};
         for (int j = 0; j < infoList.length; j++) {
             // 기존에 저장된 ID, PW, 이름, 전화번호, 주소 나열 불러오기
-            String listSt = prefs.getString(infoList[j] + "ListSt", null);
+            String listSt = prefs.getString(infoList[j], "");
             if (listSt != null) {
                 try {
                     // 기존 정보를 JSONArray로 불러오기
                     JSONArray a = new JSONArray(listSt);
                     // 변환 후 입력한 정보 추가 후 저장
                     a.put(values.get(j));
-                    editor.putString(infoList[j] + "ListSt", a.toString());
+                    editor.putString(infoList[j], a.toString());
                     editor.apply();
                 } catch (JSONException e) {
                     e.printStackTrace();

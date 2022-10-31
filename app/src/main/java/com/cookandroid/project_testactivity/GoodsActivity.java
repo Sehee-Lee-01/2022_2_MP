@@ -36,16 +36,6 @@ public class GoodsActivity extends AppCompatActivity {
     EditText editName;
     String[] names = {"cat", "dolphin", "hen", "lion", "rabbit", "panda", "sheep"};
     int[] imgs = {R.drawable.cat, R.drawable.dolphin, R.drawable.hen, R.drawable.lion, R.drawable.rabbit, R.drawable.panda, R.drawable.sheep};
-    ActivityResultLauncher<Intent> imageResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == InfoPop.RESULT_OK) {
-                        //이미지 버튼 소스 변경
-                    }
-                }
-            });
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -78,9 +68,6 @@ public class GoodsActivity extends AppCompatActivity {
         goodsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent imgIntent = new Intent();
-                imgIntent.setType(Intent.ACTION_GET_CONTENT);
-//                imageResultLauncher.launch(imgIntent);
                 Toast.makeText(getApplicationContext(), "이미지가 업로드되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });

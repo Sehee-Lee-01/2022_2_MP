@@ -26,7 +26,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class LogInFragment extends Fragment {
-    // 로그인 했으면 이름 "00님 안녕하세요." 하고 상품확인 버튼만 보이게
     Button btnToLogIn, btnToGoods, btnToSignUp;
     EditText editID, editPW;
     TextView announce;
@@ -42,7 +41,7 @@ public class LogInFragment extends Fragment {
         if (savedInstanceState == null) {
             String[] userInfo = getLatestUserInfo();
             editID.setText(userInfo[0]);
-            editPW.setText(userInfo[2]);
+            editPW.setText(userInfo[1]);
         }
         // 로그인 하고 목록 보기
         btnToLogIn = (Button) rootView.findViewById(R.id.btnLogIn); // 로그인 버튼
@@ -100,10 +99,10 @@ public class LogInFragment extends Fragment {
     private String[] getLatestUserInfo() {
         String[] latestUserInfo = new String[2]; // 배열 생성(ID, PW)
         prefs = getActivity().getSharedPreferences("person_info", 0);
-        String[] infoList = new String[]{"userID", "userPW"};
+        String[] infoList = new String[]{"userIDListSt", "userPWListSt"};
         for (int j = 0; j < infoList.length; j++) {
             // 기존에 저장된 ID, PW 나열 불러오기
-            String listSt = prefs.getString(infoList[j] + "ListSt", null);
+            String listSt = prefs.getString(infoList[j], "");
             if (listSt != null) {
                 try {
                     // 기존 정보를 JSONArray로 불러오기
@@ -124,8 +123,8 @@ public class LogInFragment extends Fragment {
         int idxPW = -1;
         prefs = getActivity().getSharedPreferences("person_info", 0);
         // 기존에 저장된 ID, PW 나열 불러오기
-        String userIDListSt = prefs.getString("userIDListSt", null);
-        String userPWListSt = prefs.getString("userPWListSt", null);
+        String userIDListSt = prefs.getString("userIDListSt", "");
+        String userPWListSt = prefs.getString("userPWListSt", "");
         JSONArray userIDList, userPWList;
         if (userIDListSt != null) {
             try {
