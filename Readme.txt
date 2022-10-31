@@ -4,6 +4,9 @@
 1. 모바일 프로그래밍 개인프로젝트 Github 저장소
 -   https://github.com/Sehee-Lee-01/2022_2_MP
 
+2. 모바일 프로그래밍 개인프로젝트 상세 설명
+-   https://github.com/Sehee-Lee-01/2022_2_MP/wiki
+
 2. 개인 과제 완료 현황
 0. SDK 버전 및 개발언어
 -   (구현 완료) SDK 버전은 안드로이드 12를 사용
