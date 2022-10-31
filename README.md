@@ -9,12 +9,16 @@
 
 ## 2. 개인 과제 완료 현황
 
+![모프 개인-1](https://user-images.githubusercontent.com/85275893/199060300-8ea672c1-12e2-4496-8455-38d88a9031f4.png)
+
 ### 0. SDK 버전 및 개발언어
 
 - `(구현 완료)` SDK 버전은 **안드로이드 12**를 사용
 - 개발언어는 **JAVA**를 사용
 
 ### 1. 첫번째 화면 `(Relative Layout, Fragment 사용)`
+
+![모프 개인-2](https://user-images.githubusercontent.com/85275893/199060322-6fddb02c-d720-4403-b63a-873b2897ead0.png)
 
 - java 파일 / layout 파일
   - `MainActivity.java / main.xml`: 메인 액티비티, 인덱스에 따라 프래그먼트 변경
@@ -31,6 +35,10 @@
 - `(구현 완료)` 회원가입 없이도 메인 버튼(상품 출력 페이지)을 클릭하면 세번째 화면으로 이동 가능
 
 ### 2. 두번째 화면 `(Linear Layout, Fragment 사용)`
+
+![모프 개인-3](https://user-images.githubusercontent.com/85275893/199060358-45c93ed4-689c-49a7-822b-3d8c86dba137.png)
+
+![모프 개인-4](https://user-images.githubusercontent.com/85275893/199060371-47aff37e-9946-4d93-892e-aefd15c8aed9.png)
 
 - java 파일 / layout 파일
   - `MainActivity.java / main.xml`: 메인 액티비티, 인덱스에 따라 프래그먼트 변경
@@ -49,6 +57,10 @@
 - `(구현 완료)`  회원정보 저장은 `프레퍼런스(Preference)`에 `ArrayList로` 저장
 
 ### 3. 세번째 화면 `(Grid Layout 사용)`
+
+![모프 개인-5](https://user-images.githubusercontent.com/85275893/199060383-71b90e9c-f478-4d17-8e37-a5ae83dd1694.png)
+
+![모프 개인-6](https://user-images.githubusercontent.com/85275893/199060397-e8d7d030-d7cc-49d5-b384-937a7ba68d90.png)
 
 - java 파일 / layout 파일
   - `GoodsActivity.java / goods.xml, goods_row.xml`: ListView를 이용한 상품 출력 페이지
