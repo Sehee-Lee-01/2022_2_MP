@@ -16,7 +16,7 @@
 
 ### 1. 첫번째 화면 `(Relative Layout, Fragment 사용)`
 
-![모프 개인 (1)](https://user-images.githubusercontent.com/85275893/198891561-e7f44c0a-beb3-48d5-91b3-6481b990ddff.png)
+![모프 개인](https://user-images.githubusercontent.com/85275893/198918217-ea584993-7b57-435f-84e6-56bfda7b0ee7.png)
 
 - `(구현 완료)` 앱 접속 페이지, 회원 ID/비밀번호(EditView), 로그인/회원가입(Button)
 
