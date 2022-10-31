@@ -29,7 +29,7 @@ public class LogInFragment extends Fragment {
     Button btnToLogIn, btnToGoods, btnToSignUp;
     EditText editID, editPW;
     TextView announce;
-    String loginID, loginPW, userID;
+    String loginID, loginPW;
     SharedPreferences prefs;
 
     @Override
@@ -62,7 +62,7 @@ public class LogInFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), GoodsActivity.class);
                         // 로그인 했다고 전달(로그인 여부, 아이디 전달)
                         intent.putExtra("isLogin", true);
-                        intent.putExtra("userID", userID);
+                        intent.putExtra("userID", loginID);
                         startActivity(intent);
                     } else {
                         String annID = "ID가 잘못되었거나 비밀번호가 잘못되었습니다.";

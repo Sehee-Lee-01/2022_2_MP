@@ -24,8 +24,10 @@ public class InfoPop extends AppCompatActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.pop_info);
+
         Intent inIntent = getIntent();
         String userID = inIntent.getStringExtra("userID");
+
         txtUserID = (TextView) findViewById(R.id.txtUserID);
         txtUserName = (TextView) findViewById(R.id.txtUserName);
         txtUserPhone = (TextView) findViewById(R.id.txtUserPhone);
@@ -47,41 +49,39 @@ public class InfoPop extends AppCompatActivity {
             }
         });
     }
-    //SharedPreferences에 ID로 회원 정보 불러오기
+
     private String[] getUserInfo(String userID) {
+        String[] userInfoList = new String[3]; // 배열 생성
+        userInfoList[0]= "nonInfo";
+        userInfoList[1]= "nonInfo";
+        userInfoList[2]= "nonInfo";
+
+        prefs = getSharedPreferences("person_info", 0);
         // 아이디 인덱스 확인
-        int idxPW = -1;
-        String userIDListSt = prefs.getString("userIDListSt", null);
-        JSONArray userIDList;
-        if (userIDListSt != null) {
-            try {
-                userIDList = new JSONArray(userIDListSt);
-                for (int i = 0; i < userIDList.length(); i++) {
-                    if (userID.equals(userIDList.optString(i))) {
-                        idxPW = i;
-                        break;
-                    }
+        int idxID = -1;
+        String userIDListSt = prefs.getString("userIDListSt", "");
+        try {
+            JSONArray userIDList = new JSONArray(userIDListSt);
+            for (int i = 0; i < userIDList.length(); i++) {
+                if (userID.equals(userIDList.optString(i))) {
+                    idxID = i;
+                    break;
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         // 인덱스 확인 후 값 불러오기
-        String[] userInfoList = new String[3]; // 배열 생성
-        prefs = getSharedPreferences("person_info", 0);
-        String[] infoList = new String[]{"userName", "userPhone", "userAddress"};
+        String[] infoList = new String[]{"userNameListSt", "userPhoneListSt", "userAddressListSt"};
         for (int j = 0; j < infoList.length; j++) {
             // 기존에 저장된 나열 불러오기
-            String listSt = prefs.getString(infoList[j] + "ListSt", null);
-            if (listSt != null) {
-                try {
-                    // 기존 정보를 JSONArray로 불러오기
-                    JSONArray a = new JSONArray(listSt);
-                    String info = a.optString(idxPW); // 최근 회원정보
-                    userInfoList[j] = info;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            String listSt = prefs.getString(infoList[j], "");
+            try {
+                JSONArray a = new JSONArray(listSt);
+                String info = a.optString(idxID);
+                userInfoList[j] = info;
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
         return userInfoList;
