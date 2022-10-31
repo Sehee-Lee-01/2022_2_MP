@@ -19,6 +19,10 @@ import androidx.fragment.app.FragmentManager;
 import com.cookandroid.project_testactivity.MainActivity;
 import com.cookandroid.project_testactivity.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -90,16 +94,15 @@ public class SignUpFragment extends Fragment {
                     announcePW.setVisibility(View.VISIBLE);
                 } else if (!radAccept.isChecked()) {
                     Toast.makeText(getActivity(), "개인정보 활용에 동의해주세요.", Toast.LENGTH_SHORT).show();
-                } else {                // 모두 저장
-                    prefs = getActivity().getSharedPreferences("person_info", 0);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("userID", userID);
-                    editor.putString("userPW", userPW);
-                    editor.putString("userName", userName);
-                    editor.putString("userPhone", userPhone);
-                    editor.putString("userAddress", userAddress);
-                    editor.apply();
-                    // 저장 후 이동
+                } else {
+                    ArrayList<String> userInfo = new ArrayList<String>();
+                    userInfo.add(userID);
+                    userInfo.add(userPW);
+                    userInfo.add(userName);
+                    userInfo.add(userPhone);
+                    userInfo.add(userAddress);
+                    insertUserInfo(userInfo); // 모두 ArrayList로 저장
+                    // 로그인 페이지로 이동
                     MainActivity activity = (MainActivity) getActivity();
                     activity.onFragmentChanged(0);
                 }
@@ -121,6 +124,29 @@ public class SignUpFragment extends Fragment {
             return false;
         } else {
             return true;
+        }
+    }
+
+    //SharedPreferences에 ArrayList 형식의 데이터를 저장
+    private void insertUserInfo(ArrayList<String> values) {
+        prefs = getActivity().getSharedPreferences("person_info", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        String[] infoList = new String[]{"userID", "userPW", "userName", "userPhone", "userAddress"};
+        for (int j = 0; j < infoList.length; j++) {
+            // 기존에 저장된 ID, PW, 이름, 전화번호, 주소 나열 불러오기
+            String listSt = prefs.getString(infoList[j] + "ListSt", null);
+            if (listSt != null) {
+                try {
+                    // 기존 정보를 JSONArray로 불러오기
+                    JSONArray a = new JSONArray(listSt);
+                    // 변환 후 입력한 정보 추가 후 저장
+                    a.put(values.get(j));
+                    editor.putString(infoList[j] + "ListSt", a.toString());
+                    editor.apply();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

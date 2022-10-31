@@ -74,7 +74,6 @@ public class GoodsActivity extends AppCompatActivity {
 
         Intent inIntent = getIntent();
         boolean isLogin = inIntent.getBooleanExtra("isLogin", false);
-
         goodsImage = (ImageButton) findViewById(R.id.goodsImage);
         goodsImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,10 +116,12 @@ public class GoodsActivity extends AppCompatActivity {
         btnPop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 로그인 된 상태인 경우
+                // 로그인 된 상태인 경우(유저 아이디도 전달된 상황)
                 if (isLogin) {
+                    String userID = inIntent.getStringExtra("userID");
                     // 회원 정보 보여주기(팝업)
                     Intent intent = new Intent(getApplicationContext(), InfoPop.class);
+                    intent.putExtra("userID", userID);
                     startActivity(intent);
                 } else {
                     // 안된 상태인 경우
