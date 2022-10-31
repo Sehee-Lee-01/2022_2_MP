@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="※ 중복된 아이디입니다."
+                    android:text="※ 유효하지 않거나 중복된 아이디입니다."
                     android:textColor="#ff0000"
                     android:visibility="gone" />
 

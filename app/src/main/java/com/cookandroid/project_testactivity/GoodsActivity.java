@@ -36,16 +36,6 @@ public class GoodsActivity extends AppCompatActivity {
     EditText editName;
     String[] names = {"cat", "dolphin", "hen", "lion", "rabbit", "panda", "sheep"};
     int[] imgs = {R.drawable.cat, R.drawable.dolphin, R.drawable.hen, R.drawable.lion, R.drawable.rabbit, R.drawable.panda, R.drawable.sheep};
-    ActivityResultLauncher<Intent> imageResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == InfoPop.RESULT_OK) {
-                        //이미지 버튼 소스 변경
-                    }
-                }
-            });
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -74,14 +64,10 @@ public class GoodsActivity extends AppCompatActivity {
 
         Intent inIntent = getIntent();
         boolean isLogin = inIntent.getBooleanExtra("isLogin", false);
-
         goodsImage = (ImageButton) findViewById(R.id.goodsImage);
         goodsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent imgIntent = new Intent();
-                imgIntent.setType(Intent.ACTION_GET_CONTENT);
-//                imageResultLauncher.launch(imgIntent);
                 Toast.makeText(getApplicationContext(), "이미지가 업로드되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -117,10 +103,12 @@ public class GoodsActivity extends AppCompatActivity {
         btnPop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 로그인 된 상태인 경우
+                // 로그인 된 상태인 경우(유저 아이디도 전달된 상황)
                 if (isLogin) {
+                    String userID = inIntent.getStringExtra("userID");
                     // 회원 정보 보여주기(팝업)
                     Intent intent = new Intent(getApplicationContext(), InfoPop.class);
+                    intent.putExtra("userID", userID);
                     startActivity(intent);
                 } else {
                     // 안된 상태인 경우

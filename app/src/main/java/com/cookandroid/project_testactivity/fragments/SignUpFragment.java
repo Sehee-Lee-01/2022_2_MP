@@ -19,6 +19,10 @@ import androidx.fragment.app.FragmentManager;
 import com.cookandroid.project_testactivity.MainActivity;
 import com.cookandroid.project_testactivity.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,17 +50,16 @@ public class SignUpFragment extends Fragment {
                 if (signUpID.equals("")) {
                     Toast.makeText(getActivity(), "ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
-                    prefs = getActivity().getSharedPreferences("person_info", 0);
-                    String savedID = prefs.getString("userID", "");
-                    if (signUpID.equals(savedID)) {
-                        invalidID.setVisibility(View.VISIBLE);
-                        validID.setVisibility(View.GONE);
-                    } else {
+                    // 아이디 중복 검사
+                    if (isIDValid(signUpID)) {
                         invalidID.setVisibility(View.GONE);
                         validID.setVisibility(View.VISIBLE);
+                        isTestedID = true; // 중복 검사하고 통과되면 중복검사 전역변수 True로 바꾸기
+                    } else {
+                        invalidID.setVisibility(View.VISIBLE);
+                        validID.setVisibility(View.GONE);
+                        isTestedID = false;
                     }
-                    // 중복 검사하고 중복검사 전역변수 True로 바꾸기
-                    isTestedID = true;
                 }
             }
         });
@@ -90,22 +93,43 @@ public class SignUpFragment extends Fragment {
                     announcePW.setVisibility(View.VISIBLE);
                 } else if (!radAccept.isChecked()) {
                     Toast.makeText(getActivity(), "개인정보 활용에 동의해주세요.", Toast.LENGTH_SHORT).show();
-                } else {                // 모두 저장
-                    prefs = getActivity().getSharedPreferences("person_info", 0);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("userID", userID);
-                    editor.putString("userPW", userPW);
-                    editor.putString("userName", userName);
-                    editor.putString("userPhone", userPhone);
-                    editor.putString("userAddress", userAddress);
-                    editor.apply();
-                    // 저장 후 이동
-                    MainActivity activity = (MainActivity) getActivity();
+                } else {
+                    ArrayList<String> userInfo = new ArrayList<String>();
+                    userInfo.add(userID);
+                    userInfo.add(userPW);
+                    userInfo.add(userName);
+                    userInfo.add(userPhone);
+                    userInfo.add(userAddress);
+                    insertUserInfo(userInfo); // 모두 ArrayList로 저장
+                    Toast.makeText(getActivity(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    MainActivity activity = (MainActivity) getActivity(); // 로그인 페이지로 이동
                     activity.onFragmentChanged(0);
                 }
             }
         });
         return rootView;
+    }
+
+    private boolean isIDValid(String signUpID) {
+        prefs = getActivity().getSharedPreferences("person_info", 0);
+        // 기존에 저장된 ID 나열 불러오기
+        String userIDListSt = prefs.getString("userIDListSt", "");
+        if (!userIDListSt.equals("")) {
+            try {
+                JSONArray userIDList = new JSONArray(userIDListSt);
+                // 아이디 확인
+                for (int i = 0; i < userIDList.length(); i++) {
+                    if (signUpID.equals(userIDList.optString(i))) {
+                        Toast.makeText(getActivity(), "중복된 아이디가 있습니다.", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Toast.makeText(getActivity(), "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     private boolean isPWValid(String password) {
@@ -122,5 +146,30 @@ public class SignUpFragment extends Fragment {
         } else {
             return true;
         }
+    }
+
+    //SharedPreferences에 ArrayList 형식의 데이터를 저장
+    private void insertUserInfo(ArrayList<String> values) {
+        prefs = getActivity().getSharedPreferences("person_info", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        String[] infoList = new String[]{"userIDListSt", "userPWListSt", "userNameListSt", "userPhoneListSt", "userAddressListSt"};
+        // 기존에 저장된 ID, PW, 이름, 전화번호, 주소 나열 불러와서 끝에 각각 저장
+        for (int j = 0; j < infoList.length; j++) {
+            // 나열 불러오기
+            String listSt = prefs.getString(infoList[j], "");
+            try {
+                JSONArray a;
+                if (listSt.equals("")) {
+                    a = new JSONArray();
+                } else {
+                    a = new JSONArray(listSt); // 나열을 JSONArray로 변환
+                }
+                a.put(values.get(j)); // 변환 후 입력한 정보 추가 후 저장
+                editor.putString(infoList[j], a.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        editor.apply();
     }
 }
